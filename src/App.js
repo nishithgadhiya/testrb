@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 //import styles
 import './styles/app.scss'
+//import { useEffect } from 'react'
 //import axios from 'axios'
 //imports for unique key, jsondata and momentjs
 import { v4 as uuid } from 'uuid'
@@ -12,7 +13,8 @@ import Header from './components/Header'
 import DataList from './components/DataList'
 
 function App() {
-  const [apidata, setApiData] = useState(jsonData)
+  //const [apidata, setApiData] = useState(jsonData)
+  const apidata = jsonData()
   let dateChange
   let count = 0
   let layoverTime, tempTime, i
@@ -40,11 +42,10 @@ function App() {
         //code for calculating layover time
         count++
         if (data.DutyCode === 'LAYOVER') {
-          console.log(count)
           tempTime = 1440 - moment.duration(data.Time_Depart).asMinutes()
 
           for (i = count; i < apidata.length; i++) {
-            if (apidata[i].DutyCode == 'FLIGHT') {
+            if (apidata[i].DutyCode === 'FLIGHT') {
               layoverTime =
                 tempTime + moment.duration(apidata[i].Time_Depart).asMinutes()
               break
@@ -52,9 +53,9 @@ function App() {
               tempTime = tempTime + 1440
             }
           }
+          //code for format hh:mm from total minutes
           var minutes = layoverTime % 60
           var hours = (layoverTime - minutes) / 60
-          console.log(hours + ':' + minutes)
           layoverTime = `${hours}:${minutes ? minutes : '00'}`
         }
 

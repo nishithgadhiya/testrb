@@ -17,28 +17,20 @@ const DataList = (props) => {
     switch (code) {
       case 'FLIGHT':
         return ''
-        break
       case 'Standby':
         return `SBY (${individualData.Departure})`
-        break
       case 'LAYOVER':
         return `${individualData.Departure}`
-        break
       case 'OFF':
         return `OFF (${individualData.Departure})`
-        break
       case 'POSITIONING':
         return `POSITIONING`
-        break
       case 'REPORT':
         return `Report (${individualData.Departure})`
-        break
       case 'TRAINING':
         return `TRA (${individualData.Departure})`
-        break
       default:
         return ''
-        break
     }
   }
 
@@ -49,32 +41,24 @@ const DataList = (props) => {
         return `${individualData.Departure} ${
           individualData.Departure ? `-` : ``
         } ${individualData.Destination}`
-        break
       case 'Standby':
         return `Standby`
-        break
       case 'LAYOVER':
         return `Layover`
-        break
       case 'OFF':
         return `Day OFF`
-        break
       case 'POSITIONING':
         return `${individualData.Departure} ${
           individualData.Departure ? `-` : ``
         } ${individualData.Destination}`
-        break
       case 'REPORT':
         return `${individualData.Departure} ${
           individualData.Departure ? `-` : ``
         } ${individualData.Destination}`
-        break
       case 'TRAINING':
         return `TRAINING`
-        break
       default:
         return ''
-        break
     }
   }
 
@@ -85,31 +69,24 @@ const DataList = (props) => {
         return `${individualData.Time_Depart} ${
           individualData.Time_Depart ? `-` : ``
         } ${individualData.Time_Arrive}`
-        break
       case 'Standby':
         return `02:00 - 02:00`
-        break
       case 'LAYOVER':
         return `${layoverTime} hours`
-        break
       case 'POSITIONING':
         return `${individualData.Time_Depart} ${
           individualData.Time_Depart ? `-` : ``
         } ${individualData.Time_Arrive}`
-        break
       case 'REPORT':
         return `${individualData.Time_Depart} ${
           individualData.Time_Depart ? `-` : ``
         } ${individualData.Time_Arrive}`
-        break
       case 'TRAINING':
         return `${individualData.Time_Depart} ${
           individualData.Time_Depart ? `-` : ``
         } ${individualData.Time_Arrive}`
-        break
       default:
         return ''
-        break
     }
   }
   return (
@@ -124,7 +101,7 @@ const DataList = (props) => {
         <div className="details">
           <div className="upper-details">
             <h4>{getDeparToDesti(individualData.DutyCode)}</h4>
-            <h5>{individualData.DutyCode == 'Standby' ? 'Match Crew' : ''}</h5>
+            <h5>{individualData.DutyCode === 'Standby' ? 'Match Crew' : ''}</h5>
           </div>
           <div className="lower-details">
             <h4>{getPlace(individualData.DutyCode)}</h4>
