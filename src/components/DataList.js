@@ -1,9 +1,17 @@
 import React from 'react'
+import { useState } from 'react/cjs/react.development'
+
+import Popup from './Popup'
 
 const DataList = (props) => {
   const stylePlane = { fontSize: '250%' }
   const individualData = props.individualData
   const layoverTime = props.layoverTime
+  const [buttonPopup, setButtonPopup] = useState(false)
+
+  function popupHandler(value) {
+    setButtonPopup(value)
+  }
 
   const getPlace = (code) => {
     switch (code) {
@@ -21,6 +29,12 @@ const DataList = (props) => {
         break
       case 'POSITIONING':
         return `POSITIONING`
+        break
+      case 'REPORT':
+        return `Report (${individualData.Departure})`
+        break
+      case 'TRAINING':
+        return `TRA (${individualData.Departure})`
         break
       default:
         return ''
@@ -48,6 +62,14 @@ const DataList = (props) => {
           individualData.Departure ? `-` : ``
         } ${individualData.Destination}`
         break
+      case 'REPORT':
+        return `${individualData.Departure} ${
+          individualData.Departure ? `-` : ``
+        } ${individualData.Destination}`
+        break
+      case 'TRAINING':
+        return `TRAINING`
+        break
       default:
         return ''
         break
@@ -71,6 +93,16 @@ const DataList = (props) => {
           individualData.Time_Depart ? `-` : ``
         } ${individualData.Time_Arrive}`
         break
+      case 'REPORT':
+        return `${individualData.Time_Depart} ${
+          individualData.Time_Depart ? `-` : ``
+        } ${individualData.Time_Arrive}`
+        break
+      case 'TRAINING':
+        return `${individualData.Time_Depart} ${
+          individualData.Time_Depart ? `-` : ``
+        } ${individualData.Time_Arrive}`
+        break
       default:
         return ''
         break
@@ -78,22 +110,97 @@ const DataList = (props) => {
   }
   return (
     <div className="data-list">
-      <div className="icon">
-        <img
-          src={`/icons/${individualData.DutyCode}.svg`}
-          alt={individualData.DutyCode}
-        />
-      </div>
-      <div className="details">
-        <div className="upper-details">
-          <h4>{getDeparToDesti(individualData.DutyCode)}</h4>
-          <h5>{individualData.DutyCode == 'Standby' ? 'Match Crew' : ''}</h5>
+      <div className="data" onClick={() => setButtonPopup(true)}>
+        <div className="icon">
+          <img
+            src={`/icons/${individualData.DutyCode}.svg`}
+            alt={individualData.DutyCode}
+          />
         </div>
-        <div className="lower-details">
-          <h4>{getPlace(individualData.DutyCode)}</h4>
-          <h5>{getTimeDetails(individualData.DutyCode)}</h5>
+        <div className="details">
+          <div className="upper-details">
+            <h4>{getDeparToDesti(individualData.DutyCode)}</h4>
+            <h5>{individualData.DutyCode == 'Standby' ? 'Match Crew' : ''}</h5>
+          </div>
+          <div className="lower-details">
+            <h4>{getPlace(individualData.DutyCode)}</h4>
+            <h5>{getTimeDetails(individualData.DutyCode)}</h5>
+          </div>
         </div>
       </div>
+      <Popup trigger={buttonPopup} popupHandler={popupHandler}>
+        <div className="popup-details">
+          {individualData.DutyCode === 'OFF' ? (
+            <div className="off">
+              <h2>Day Off. Take Proper Rest and Enjoy</h2>
+              <h3>
+                Date : {individualData.Date ? individualData.Date : 'N/A'}
+              </h3>
+              <h3>
+                Place :
+                {individualData.Departure ? individualData.Departure : 'N/A'}
+              </h3>
+            </div>
+          ) : (
+            <>
+              <h2>OTHER DETAILS</h2>
+              <h3>
+                Flight Number :{' '}
+                {individualData.Flightnr ? individualData.Flightnr : 'N/A'}
+              </h3>
+              <h3>
+                Flight Date :{' '}
+                {individualData.Date ? individualData.Date : 'N/A'}
+              </h3>
+              <h3>
+                Aircraft Type :{' '}
+                {individualData['Aircraft Type']
+                  ? individualData['Aircraft Type']
+                  : 'N/A'}
+              </h3>
+              <h3>
+                Tail : {individualData.Tail ? individualData.Tail : 'N/A'}
+              </h3>
+              <h3>
+                Dep - Des :{' '}
+                {getDeparToDesti(individualData.DutyCode)
+                  ? getDeparToDesti(individualData.DutyCode)
+                  : 'N/A'}
+              </h3>
+              <h3>
+                Time :{' '}
+                {getTimeDetails(individualData.DutyCode)
+                  ? getTimeDetails(individualData.DutyCode)
+                  : 'N/A'}
+              </h3>
+              <h3>
+                DutyId/DutyCode: {individualData.DutyID}/
+                {individualData.DutyCode}
+              </h3>
+              <h3>
+                Captain Name :{' '}
+                {individualData.Captain ? individualData.Captain : 'N/A'}
+              </h3>
+              <h3>
+                First Officer :{' '}
+                {individualData['First Officer']
+                  ? individualData['First Officer']
+                  : 'N/A'}
+              </h3>
+              <h3>
+                Flight Attendant :{' '}
+                {individualData['Flight Attendant']
+                  ? individualData['Flight Attendant']
+                  : 'N/A'}
+              </h3>
+              <h4 className="note">
+                Please wear mask and sanitize your hands whenever possible. Stay
+                Safe
+              </h4>
+            </>
+          )}
+        </div>
+      </Popup>
     </div>
   )
 }

@@ -51,7 +51,6 @@ function App() {
               tempTime = tempTime + 1440
             }
           }
-          count = i
           var minutes = layoverTime % 60
           var hours = (layoverTime - minutes) / 60
           console.log(hours + ':' + minutes)
