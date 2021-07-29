@@ -1,11 +1,11 @@
 import React from 'react'
 //import styles
 import './styles/app.scss'
-//import { useEffect,useState } from 'react'
+//import { useEffect, useState } from 'react'
 //import axios from 'axios'
 //imports for unique key, jsondata and momentjs
 import { v4 as uuid } from 'uuid'
-import { jsonData } from './jsonData'
+//import { jsonData } from './jsonData'
 import moment from 'moment'
 
 //import components
@@ -13,7 +13,7 @@ import Header from './components/Header'
 import DataList from './components/DataList'
 
 function App() {
-  //const [apidata, setApiData] = useState(jsonData)
+  //const [apidata, setApiData] = useState([])
   const apidata = jsonData()
   let dateChange
   let count = 0
@@ -37,7 +37,7 @@ function App() {
   //   getData()
   // }, [])
   return (
-    <div>
+    <div key={uuid()}>
       {apidata.map((data, key) => {
         //code for calculating layover time
         count++
@@ -63,14 +63,14 @@ function App() {
         if (data.Date !== dateChange) {
           dateChange = data.Date
           return (
-            <>
+            <div key={uuid()}>
               <Header key={uuid()} date={data.Date} />
               <DataList
                 key={uuid()}
                 individualData={data}
                 layoverTime={layoverTime}
               />
-            </>
+            </div>
           )
         }
         return (

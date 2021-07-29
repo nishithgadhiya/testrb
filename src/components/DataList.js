@@ -52,9 +52,7 @@ const DataList = (props) => {
           individualData.Departure ? `-` : ``
         } ${individualData.Destination}`
       case 'REPORT':
-        return `${individualData.Departure} ${
-          individualData.Departure ? `-` : ``
-        } ${individualData.Destination}`
+        return `Report`
       case 'TRAINING':
         return `TRAINING`
       default:
@@ -79,7 +77,7 @@ const DataList = (props) => {
         } ${individualData.Time_Arrive}`
       case 'REPORT':
         return `${individualData.Time_Depart} ${
-          individualData.Time_Depart ? `-` : ``
+          individualData.Time_Depart && individualData.Time_Arrive ? `-` : ``
         } ${individualData.Time_Arrive}`
       case 'TRAINING':
         return `${individualData.Time_Depart} ${
