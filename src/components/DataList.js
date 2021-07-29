@@ -129,43 +129,38 @@ const DataList = (props) => {
           {individualData.DutyCode === 'OFF' ? (
             <div className="off">
               <h2>Day Off. Take Proper Rest and Enjoy</h2>
+              <h3>Date: {individualData.Date ? individualData.Date : 'N/A'}</h3>
               <h3>
-                Date : {individualData.Date ? individualData.Date : 'N/A'}
-              </h3>
-              <h3>
-                Place :
+                Place:{' '}
                 {individualData.Departure ? individualData.Departure : 'N/A'}
               </h3>
             </div>
           ) : (
             // for all other event details
             <>
-              <h2>OTHER DETAILS</h2>
+              <h2>FLIGHT DETAILS</h2>
               <h3>
-                Flight Number :{' '}
+                Flight Number:{' '}
                 {individualData.Flightnr ? individualData.Flightnr : 'N/A'}
               </h3>
               <h3>
-                Flight Date :{' '}
-                {individualData.Date ? individualData.Date : 'N/A'}
+                Flight Date: {individualData.Date ? individualData.Date : 'N/A'}
               </h3>
               <h3>
-                Aircraft Type :{' '}
+                Aircraft Type:{' '}
                 {individualData['Aircraft Type']
                   ? individualData['Aircraft Type']
                   : 'N/A'}
               </h3>
+              <h3>Tail: {individualData.Tail ? individualData.Tail : 'N/A'}</h3>
               <h3>
-                Tail : {individualData.Tail ? individualData.Tail : 'N/A'}
-              </h3>
-              <h3>
-                Dep - Des :{' '}
+                Dep - Des:{' '}
                 {getDeparToDesti(individualData.DutyCode)
                   ? getDeparToDesti(individualData.DutyCode)
                   : 'N/A'}
               </h3>
               <h3>
-                Time :{' '}
+                Time:{' '}
                 {getTimeDetails(individualData.DutyCode)
                   ? getTimeDetails(individualData.DutyCode)
                   : 'N/A'}
@@ -175,17 +170,17 @@ const DataList = (props) => {
                 {individualData.DutyCode}
               </h3>
               <h3>
-                Captain Name :{' '}
+                Captain Name:{' '}
                 {individualData.Captain ? individualData.Captain : 'N/A'}
               </h3>
               <h3>
-                First Officer :{' '}
+                First Officer:{' '}
                 {individualData['First Officer']
                   ? individualData['First Officer']
                   : 'N/A'}
               </h3>
               <h3>
-                Flight Attendant :{' '}
+                Flight Attendant:{' '}
                 {individualData['Flight Attendant']
                   ? individualData['Flight Attendant']
                   : 'N/A'}
