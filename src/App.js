@@ -5,7 +5,7 @@ import './styles/app.scss'
 //import axios from 'axios'
 //imports for unique key, jsondata and momentjs
 import { v4 as uuid } from 'uuid'
-//import { jsonData } from './jsonData'
+import { jsonData } from './jsonData'
 import moment from 'moment'
 
 //import components
