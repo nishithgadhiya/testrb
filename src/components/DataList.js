@@ -1,18 +1,18 @@
-import React from 'react'
-import { useState } from 'react/cjs/react.development'
-
+import React, { useState } from 'react'
+//import components
 import Popup from './Popup'
 
 const DataList = (props) => {
-  const stylePlane = { fontSize: '250%' }
   const individualData = props.individualData
   const layoverTime = props.layoverTime
   const [buttonPopup, setButtonPopup] = useState(false)
 
+  //handler for popup on click on event div
   function popupHandler(value) {
     setButtonPopup(value)
   }
 
+  //function for getting name of a place
   const getPlace = (code) => {
     switch (code) {
       case 'FLIGHT':
@@ -41,6 +41,8 @@ const DataList = (props) => {
         break
     }
   }
+
+  //function for getting departure and destination location
   const getDeparToDesti = (code) => {
     switch (code) {
       case 'FLIGHT':
@@ -75,6 +77,8 @@ const DataList = (props) => {
         break
     }
   }
+
+  //function for getting time details
   const getTimeDetails = (code) => {
     switch (code) {
       case 'FLIGHT':
@@ -128,8 +132,10 @@ const DataList = (props) => {
           </div>
         </div>
       </div>
+      {/* popup componet */}
       <Popup trigger={buttonPopup} popupHandler={popupHandler}>
         <div className="popup-details">
+          {/* if event is duty off*/}
           {individualData.DutyCode === 'OFF' ? (
             <div className="off">
               <h2>Day Off. Take Proper Rest and Enjoy</h2>
@@ -142,6 +148,7 @@ const DataList = (props) => {
               </h3>
             </div>
           ) : (
+            // for all other event details
             <>
               <h2>OTHER DETAILS</h2>
               <h3>

@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 
 const Header = (props) => {
+  //for time, date and day
   const date = moment(props.date, 'DD/MM/YYYY')
   const week = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
   const dayOfWeek = date.day()
