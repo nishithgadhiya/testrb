@@ -72,3 +72,20 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .data-list {
+    .popup-details {
+      font-size: 0.7rem;
+      .off {
+        padding-top: 5rem;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .data {
+      width: 100%;
+      margin: auto;
+    }
+  }
+}
