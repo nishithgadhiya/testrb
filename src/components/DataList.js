@@ -8,8 +8,17 @@ const DataList = (props) => {
   const [buttonPopup, setButtonPopup] = useState(false)
 
   //handler for popup on click on event div
-  function popupHandler(value) {
+  const popupHandler = (value) => {
     setButtonPopup(value)
+  }
+
+  //handler for disabelling scroll when popup is open
+  const scrollDisable = () => {
+    const scrollY = window.scrollY
+    document.body.setAttribute(
+      'style',
+      `position:fixed; top:-${scrollY}px; left:0;right:0`,
+    )
   }
 
   //function for getting name of a place
@@ -89,7 +98,13 @@ const DataList = (props) => {
   }
   return (
     <div className="data-list">
-      <div className="data" onClick={() => setButtonPopup(true)}>
+      <div
+        className="data"
+        onClick={() => {
+          scrollDisable()
+          setButtonPopup(true)
+        }}
+      >
         <div className="icon">
           <img
             src={`/icons/${individualData.DutyCode}.svg`}
