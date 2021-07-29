@@ -2,7 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Deployed at [https://testrb.netlify.app/](https://testrb.netlify.app/).
+## For Live run deployed at
+
+[https://testrb.netlify.app/](https://testrb.netlify.app/).
 
 ## For Local run
 
