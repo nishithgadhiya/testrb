@@ -138,7 +138,12 @@ const DataList = (props) => {
           ) : (
             // for all other event details
             <>
-              <h2>FLIGHT DETAILS</h2>
+              {individualData.DutyCode === 'FLIGHT' ? (
+                <h2>FLIGHT DETAILS</h2>
+              ) : (
+                <h2>OTHER DETAILS</h2>
+              )}
+
               <h3>
                 Flight Number:{' '}
                 {individualData.Flightnr ? individualData.Flightnr : 'N/A'}
